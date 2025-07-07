@@ -32,6 +32,9 @@ Rails.application.configure do
 
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :local
+  
+  #開発環境で画像アップロード時の非同期処理によるエラーを防ぎます
+  config.active_job.queue_adapter = :inline
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
