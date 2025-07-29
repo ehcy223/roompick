@@ -12,6 +12,28 @@
   </head>
 
   <body>
+    <!-- ヘッダー -->
+    <header>
+      <nav>
+        <% if user_signed_in? %>
+          <!-- ログイン後 -->
+          <%= link_to "Room Pick", root_path %> |
+          <%= link_to "マイページ", user_path(current_user) %> |
+          <%= link_to "新規投稿", new_post_path %> |
+          <%= link_to "投稿一覧", posts_path %> |
+          <%= link_to "ユーザー一覧", users_path %> |
+          <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+        <% else %>
+          <!-- ログイン前 -->
+          <%= link_to "Room Pick", root_path %> |
+          <%= link_to "ログイン", new_user_session_path %> |
+          <%= link_to "新規登録", new_user_registration_path %> |
+          <%= link_to "投稿一覧", posts_path %> |
+          <%= link_to "ユーザー一覧", users_path %>
+        <% end %>
+      </nav>
+    </header>
+
     <%= yield %>
   </body>
 </html>
