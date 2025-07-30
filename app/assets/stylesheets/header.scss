@@ -1,0 +1,12 @@
+/* ロゴサイズ調整 */
+.logo-img {
+  height: 50px; /* PC */
+  width: auto;
+}
+
+/* スマホレスポンシブ */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 35px;
+  }
+}
