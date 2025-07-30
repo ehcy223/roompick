@@ -1,0 +1,53 @@
+/* ロゴサイズ調整 */
+.logo-img {
+  height: 200px; /* PC */
+  width: auto;
+}
+
+/* スマホレスポンシブ */
+@media (max-width: 768px) {
+  .logo-img {
+    height: 35px;
+  }
+}
+
+header nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px 20px; /* 上下のパディングを減らす */
+}
+
+.header-logo {
+  flex-grow: 1;
+  display: flex;
+  align-items: center; /* ロゴ縦中央揃え */
+}
+
+.logo-img {
+  height: 80px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .logo-img {
+    height: 35px;
+  }
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px; /* リンク間の間隔調整 */
+  align-items: center; /* 縦中央揃え */
+  font-size: 14px; /* リンクのフォントサイズ調整（必要に応じて） */
+}
+
+.nav-links a:not(:last-child)::after {
+  content: "|"; /* リンク間の区切り */
+  margin-left: 8px;
+  color: #ccc; /* 控えめなグレー */
+}
+
+.nav-links a:last-child::after {
+  content: ""; /* 最後のリンクの後は区切りなし */
+}
