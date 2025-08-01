@@ -27,8 +27,10 @@ Rails.application.routes.draw do
       get 'posts', to: 'posts#tag'         # タグ別投稿一覧
     end
   
-    resources :users, only: [] do
+    resources :users, only: [:edit, :update] do
       get 'posts', to: 'posts#user_posts'  # ユーザー別投稿一覧
+      get 'unsubscribe'  # 退会確認画面
+      patch 'withdraw'  # ステータス更新（退会）
     end
   end
 
