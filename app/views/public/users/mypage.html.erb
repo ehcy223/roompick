@@ -1,5 +1,14 @@
-<h1><%= @user.name %> さんのマイページ</h1>
-<p>メールアドレス: <%= @user.email %></p>
+<h1><%= @user.name %>さんのマイページ</h1>
 
-<hr>
-<%= link_to "トップページへ戻る", root_path %>
+<%= link_to 'ユーザー編集', edit_user_path(@user), class: 'btn btn-secondary' %>
+
+<h2>あなたの投稿一覧</h2>
+
+<ul>
+  <% @posts.each do |post| %>
+    <li>
+      <%= link_to post.title, post_path(post) %> <!-- タイトルクリックで投稿詳細に -->
+      <span>（<%= post.created_at.strftime("%Y/%m/%d") %>）</span>
+    </li>
+  <% end %>
+</ul>
