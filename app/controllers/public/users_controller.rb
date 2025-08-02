@@ -25,12 +25,14 @@ module Public
         render :edit
       end
     end
-    
+
+    # 退会確認ページ表示用アクション
     def unsubscribe
       @user = current_user
-      # 退会確認ページ表示用アクション
     end
 
+    # 退会処理（論理削除）
+    # 失敗時は退会確認ページを再表示
     def withdraw
       @user = current_user
       if @user.update(is_active: false)

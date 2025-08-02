@@ -1,16 +1,7 @@
 <h1>投稿編集</h1>
 
 <%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
-  <% if @post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@post.errors.count, "エラー") %>があります：</h2>
-      <ul>
-        <% @post.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+  <%= render "public/shared/error_messages", resource: @post %>
 
   <div class="form-group">
     <%= f.label :title, "タイトル" %>
