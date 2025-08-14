@@ -5,54 +5,26 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    
+
     <script src="https://kit.fontawesome.com/847d84db90.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <!-- ヘッダー -->
     <header>
-      <nav>
-        <div class="header-logo">
-          <!-- ロゴはログイン状態に関係なく表示 -->
-          <%= link_to root_path, class: "header-logo" do %>
-            <%= image_tag "roompick-logo.png", alt: "RoomPick ロゴ", class: "logo-img"  %>
-          <% end %>
-
-        
-         <div class="nav-links">
-          <% if user_signed_in? %>
-            <!-- ログイン後 -->
-            <%= link_to "マイページ", mypage_path %> 
-            <%#= link_to "新規投稿", new_post_path %> 
-            <%#= link_to "投稿一覧", posts_path %> 
-            <%#= link_to "ユーザー一覧", users_path %> 
-            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
-          <% else %>
-
-            <!-- ログイン前 -->
-            <%= link_to "ログイン", new_user_session_path %> |
-            <%= link_to "新規登録", new_user_registration_path %> |
-            <%#= link_to "投稿一覧", posts_path %>
-            <%#= link_to "ユーザー一覧", users_path %>
-          <% end %>
-        </div>
-      </nav>
+      <%= render 'public/shared/header' %>
     </header>
-    
-    #エラーメッセージ
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
 
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
+    <!-- 検索フォーム（パスは untracked に合わせて public/shared 配下） -->
+    <%= render 'shared/search_form' %>
 
-
-    <%= render 'shared/search_form' %><!-- 検索フォームのパーシャル -->
+    <!-- フラッシュメッセージ -->
+    <div class="flash-area">
+      <% flash.each do |key, value| %>
+        <p class="<%= key %>"><%= value %></p>
+      <% end %>
+    </div>
 
     <%= yield %>
   </body>
