@@ -1,0 +1,15 @@
+<h1>投稿一覧</h1>
+
+<% @posts.each do |post| %>
+  <div class="post-card">
+    <% if post.image.attached? %>
+      <%= image_tag post.image.variant(resize_to_limit: [300, 200]) %>
+    <% else %>
+      <p>画像なし</p>
+    <% end %>
+
+    <h2><%= link_to post.title, post_path(post) %></h2>
+    <p>評価: <%= post.rating %> / 5</p>
+    <p><%= truncate(post.body, length: 100) %></p>
+  </div>
+<% end %>

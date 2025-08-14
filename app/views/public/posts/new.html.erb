@@ -1,0 +1,27 @@
+<h1>新規投稿</h1>
+
+<%= form_with model: @post, local: true, html: { multipart: true } do |f| %>
+    <%= render "public/shared/error_messages", resource: @post %>
+
+  <div class="form-group">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :body, "本文" %>
+    <%= f.text_area :body, rows: 5, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :rating, "評価" %>
+    <%= f.number_field :rating, in: 1..5, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :image, "画像アップロード" %>
+    <%= f.file_field :image, class: "form-control" %>
+  </div>
+
+  <%= f.submit "投稿する", class: "btn btn-primary" %>
+<% end %>

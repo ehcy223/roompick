@@ -1,3 +1,10 @@
+@import "header";
+
+/* Sprockets の require系は併用しない方が安全（重複取り込み防止）
+ * = require_self
+ * = require_tree .
+ */
+ 
 .top-banner {
   background-image: image-url("top_banner.png"); /* 画像読み込み */
   background-size: cover;       /* 画像を領域いっぱいに表示（比率維持） */

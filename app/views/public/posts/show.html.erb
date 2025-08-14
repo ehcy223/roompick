@@ -1,0 +1,22 @@
+<% if @post.image.attached? %>
+  <%= image_tag @post.image.variant(resize_to_limit: [500, 500]) %>
+<% end %>
+
+<h1><%= @post.title %></h1>
+
+<p><%= @post.body %></p>
+
+<p>評価:
+  <% 5.times do |i| %>
+    <% if i < @post.rating %>
+      ★
+    <% else %>
+      ☆
+    <% end %>
+  <% end %>
+</p>
+
+<% if user_signed_in? && current_user == @post.user %>
+  <%= link_to '編集', edit_post_path(@post) %>
+<% end %>
+  
