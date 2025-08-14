@@ -1,0 +1,6 @@
+ja:
+  devise:
+    failure:
+      user:
+        invalid: "メールアドレスまたはパスワードが違います。"
+      invalid: "無効な認証情報です。"
