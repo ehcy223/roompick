@@ -11,9 +11,15 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- 右：リンク -->
+    <!-- 右側ナビ -->
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
-      <ul class="navbar-nav">
+      <ul class="navbar-nav align-items-center">
+        
+        <!-- ★ 検索フォーム（右ナビの先頭＝一番左） -->
+        <li class="nav-item me-3">
+          <%= render 'shared/search_form' %>
+        </li>
+
         <% if user_signed_in? %>
           <li class="nav-item"><%= link_to "マイページ", mypage_path, class: "nav-link" %></li>
           <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %></li>

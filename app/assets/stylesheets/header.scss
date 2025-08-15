@@ -11,10 +11,5 @@
   }
 }
 
-body {
-  padding-top: 60px; /* PC向け */
+body { padding-top: 0 !important; }
 
-  @media (max-width: 768px) {
-    padding-top: 45px; /* スマホ向け */
-  }
-}

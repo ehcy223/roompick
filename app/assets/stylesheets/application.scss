@@ -5,10 +5,17 @@
  * = require_tree .
  */
  
-.top-banner {
-  background-image: image-url("top_banner.png"); /* 画像読み込み */
-  background-size: cover;       /* 画像を領域いっぱいに表示（比率維持） */
-  background-position: center;  /* 中央寄せ */
-  width: 100%;                   /* 横幅いっぱい */
-  height: 300px;                 /* 高さ固定（好みに応じて調整） */
+ .top-banner {
+  width: 100%;
+  /* 好きな比率に調整（例：横21:縦9）。固定高さ派は height: 300px; でもOK */
+  aspect-ratio: 21 / 9;
+  overflow: hidden;           /* はみ出した上側の余白を隠す */
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;          /* コンテナに合わせて拡大・トリミング */
+  object-position: center 99%; /* ← ここを調整して上余白を削る */
 }

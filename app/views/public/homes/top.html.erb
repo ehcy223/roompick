@@ -1,7 +1,36 @@
 <!-- ヘッダー下のバナー -->
-<div class="top-banner"></div>
+<div class="top-banner">
+  <%= image_tag "top_banner.png", alt: "トップバナー", class: "banner-img" %>
+</div>
 
-<main>
-  <!-- ここからトップページのコンテンツ -->
-  <h1>Room pick</h1>
+<!-- サイト説明 -->
+<section class="top-description container py-5">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <h1 class="td-title mb-3">暮らしをもっと快適に、RoomPick</h1>
+      <p class="td-lead mb-4">
+        <strong>RoomPick（ルームピック）</strong>は、家電・インテリアなど
+        “家にまつわるアイテムやサービス”のレビューをみんなで共有できるコミュニティです。
+        気になるものの本音レビューをチェックしたり、あなたの体験談を投稿できます。
+      </p>
+
+      <ul class="td-points list-unstyled mb-4">
+        <li>✔ 本音レビューで購入前の不安を解消</li>
+        <li>✔ カテゴリー・タグでサクッと検索</li>
+        <li>✔ コメント＆いいねで交流できる</li>
+      </ul>
+
+      <div class="d-flex flex-wrap gap-2">
+        <%= link_to "レビューを探す", posts_path, class: "btn btn-primary btn-lg" %>
+        <%# ログイン前の導線（必要なら表示） %>
+        <% unless user_signed_in? %>
+          <%= link_to "無料登録して投稿する", new_user_registration_path, class: "btn btn-outline-primary btn-lg" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main class="container my-5">
+  <!-- ここからトップページのコンテンツ（新着など） -->
 </main>

@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Roompick</title>
+    <title><%= content_for?(:title) ? yield(:title) : "RoomPick" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+
+    <!-- Sprockets側のCSSを読む -->
+    <%= stylesheet_link_tag 'application', media: 'all' %>
 
     <script src="https://kit.fontawesome.com/847d84db90.js" crossorigin="anonymous"></script>
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
@@ -15,9 +18,6 @@
     <header>
       <%= render 'public/shared/header' %>
     </header>
-
-    <!-- 検索フォーム（パスは untracked に合わせて public/shared 配下） -->
-    <%= render 'shared/search_form' %>
 
     <!-- フラッシュメッセージ -->
     <div class="flash-area">
