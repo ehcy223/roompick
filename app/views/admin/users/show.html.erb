@@ -1,0 +1,5 @@
+<h1 class="h5 mb-3">会員詳細</h1>
+<p><strong>ID:</strong> <%= @user.id %></p>
+<p><strong>名前/メール:</strong> <%= @user.name.presence || @user.email %></p>
+<p><strong>登録日:</strong> <%= l(@user.created_at.to_date) rescue @user.created_at.to_date %></p>
+<%= link_to "一覧に戻る", admin_users_path, class: "btn btn-outline-secondary btn-sm" %>

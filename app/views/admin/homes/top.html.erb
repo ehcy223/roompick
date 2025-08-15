@@ -1,0 +1,65 @@
+<div class="bg-danger text-white text-center py-2 mb-3 fw-bold">管理者ページ</div>
+
+<h1 class="h5 mb-3">ダッシュボード</h1>
+
+<div class="row g-3">
+  <!-- 最新の投稿 -->
+  <div class="col-12 col-lg-4">
+    <div class="card h-100">
+      <div class="card-header fw-bold">最新の投稿</div>
+      <ul class="list-group list-group-flush">
+        <% @recent_posts.each do |p| %>
+          <li class="list-group-item">
+            <div class="fw-semibold"><%= link_to p.title, admin_post_path(p) %></div>
+            <small class="text-muted">
+              by <%= p.user&.name || p.user&.email %> / <%= l(p.created_at, format: :short) rescue p.created_at %>
+            </small>
+          </li>
+        <% end %>
+      </ul>
+      <div class="card-footer text-end">
+        <%= link_to "投稿一覧へ", admin_posts_path, class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 最新のコメント -->
+  <div class="col-12 col-lg-4">
+    <div class="card h-100">
+      <div class="card-header fw-bold">最新のコメント</div>
+      <ul class="list-group list-group-flush">
+        <% @recent_comments.each do |c| %>
+          <li class="list-group-item">
+            <div class="small text-muted mb-1">
+              <%= (c.user&.name || c.user&.email) %> →
+              <%= link_to(c.post.title, admin_post_path(c.post)) if c.post %>
+              / <%= l(c.created_at, format: :short) rescue c.created_at %>
+            </div>
+            <div><%= truncate(c.body.to_s, length: 80) %></div>
+          </li>
+        <% end %>
+      </ul>
+      <div class="card-footer text-end">
+        <%= link_to "コメント一覧へ", admin_comments_path, class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- 新規登録ユーザー -->
+  <div class="col-12 col-lg-4">
+    <div class="card h-100">
+      <div class="card-header fw-bold">新規登録ユーザー</div>
+      <ul class="list-group list-group-flush">
+        <% @new_users.each do |u| %>
+          <li class="list-group-item d-flex justify-content-between">
+            <span><%= u.name.presence || u.email %></span>
+            <small class="text-muted"><%= l(u.created_at.to_date) rescue u.created_at.to_date %></small>
+          </li>
+        <% end %>
+      </ul>
+      <div class="card-footer text-end">
+        <%= link_to "会員一覧へ", admin_users_path, class: "btn btn-sm btn-outline-secondary" %>
+      </div>
+    </div>
+  </div>
+</div>

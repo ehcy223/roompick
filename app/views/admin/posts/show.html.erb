@@ -1,0 +1,7 @@
+<h1 class="h5 mb-3">投稿詳細</h1>
+
+<p><strong>タイトル:</strong> <%= @post.title %></p>
+<p><strong>ユーザー:</strong> <%= @post.user&.name || @post.user&.email %></p>
+<p><strong>本文:</strong><br><%= simple_format @post.body %></p>
+
+<%= link_to "一覧に戻る", admin_posts_path, class: "btn btn-outline-secondary btn-sm" %>

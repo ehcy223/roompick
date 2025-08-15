@@ -1,4 +1,5 @@
 @import "header";
+@import "admin/admin";
 
 /* Sprockets の require系は併用しない方が安全（重複取り込み防止）
  * = require_self
@@ -32,7 +33,7 @@
   object-fit: cover;   /* 中央をトリミング */
 }
 
-/* ===== 投稿詳細（show） ===== */
+/* 投稿詳細 */
 .post-hero {
   width: 100%;
   aspect-ratio: 1 / 1; /* 正方形 */
@@ -44,4 +45,3 @@
   height: 100%;
   object-fit: cover;
 }
-/* ===== ここまで ===== */

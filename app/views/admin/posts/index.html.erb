@@ -1,0 +1,27 @@
+<h1 class="h5 mb-3">投稿一覧</h1>
+
+<table class="table table-sm align-middle">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>ユーザー</th>
+      <th>作成日</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @posts.each do |post| %>
+      <tr>
+        <td><%= post.id %></td>
+        <td><%= link_to post.title, admin_post_path(post) %></td>
+        <td><%= post.user&.name || post.user&.email %></td>
+        <td><%= l(post.created_at, format: :short) rescue post.created_at %></td>
+        <td class="text-end">
+          <%= link_to "削除", admin_post_path(post), method: :delete,
+                      data: { confirm: "削除しますか？" }, class: "btn btn-sm btn-danger" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

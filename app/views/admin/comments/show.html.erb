@@ -1,0 +1,7 @@
+<h1 class="h5 mb-3">コメント詳細</h1>
+<p><strong>ID:</strong> <%= @comment.id %></p>
+<p><strong>本文:</strong><br><%= simple_format @comment.content %></p>
+<p><strong>投稿:</strong> <%= link_to @comment.post&.title, admin_post_path(@comment.post) if @comment.post %></p>
+<p><strong>ユーザー:</strong> <%= @comment.user&.name || @comment.user&.email %></p>
+<p><strong>日時:</strong> <%= l(@comment.created_at, format: :short) rescue @comment.created_at %></p>
+<%= link_to "一覧に戻る", admin_comments_path, class: "btn btn-outline-secondary btn-sm" %>

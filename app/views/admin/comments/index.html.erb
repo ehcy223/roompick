@@ -1,0 +1,23 @@
+<h1 class="h5 mb-3">コメント一覧</h1>
+<table class="table table-sm align-middle">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>本文</th>
+      <th>投稿</th>
+      <th>ユーザー</th>
+      <th>日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |c| %>
+      <tr>
+        <td><%= link_to c.id, admin_comment_path(c) %></td>
+        <td><%= truncate(c.content, length: 80) %></td>
+        <td><%= link_to(c.post&.title, admin_post_path(c.post)) if c.post %></td>
+        <td><%= c.user&.name || c.user&.email %></td>
+        <td><%= l(c.created_at, format: :short) rescue c.created_at %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

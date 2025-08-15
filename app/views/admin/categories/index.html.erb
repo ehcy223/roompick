@@ -1,0 +1,9 @@
+<h1 class="h5 mb-3">カテゴリ一覧</h1>
+<ul class="list-group">
+  <% @categories.each do |c| %>
+    <li class="list-group-item d-flex justify-content-between">
+      <%= link_to c.name, admin_category_path(c) %>
+      <span class="text-muted small"><%= Post.where(category_id: c.id).count %> 件</span>
+    </li>
+  <% end %>
+</ul>

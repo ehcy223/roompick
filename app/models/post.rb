@@ -6,4 +6,5 @@ class Post < ApplicationRecord
   validates :body, presence: true
   validates :rating, presence: true, inclusion: { in: 1..5 }
   has_one_attached :image  #画像アップロードを有効にする
+  has_many :comments, dependent: :destroy
 end

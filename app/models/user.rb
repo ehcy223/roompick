@@ -8,6 +8,7 @@ class User < ApplicationRecord
 
   # ユーザーが削除されると関連投稿も削除
   has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end

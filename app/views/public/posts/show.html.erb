@@ -63,3 +63,34 @@
   </div>
 </div>
   
+<hr class="my-4">
+<h2 class="h6">コメント</h2>
+
+<% if user_signed_in? %>
+  <%= form_with model: [@post, Comment.new], local: true do |f| %>
+    <div class="mb-2">
+      <%= f.text_area :content, rows: 3, class: "form-control", placeholder: "コメントを書く…" %>
+    </div>
+    <%= f.submit "コメントする", class: "btn btn-primary btn-sm" %>
+  <% end %>
+<% else %>
+  <p class="text-muted small">コメントするにはログインしてください。</p>
+<% end %>
+
+<ul class="list-unstyled mt-3">
+  <% @post.comments.includes(:user).order(created_at: :desc).each do |c| %>
+    <li class="mb-3">
+      <div class="small text-muted">
+        <%= c.user&.name || c.user&.email %> ・
+        <%= l(c.created_at, format: :short) rescue c.created_at %>
+      </div>
+      <div><%= simple_format c.content %></div>
+      <% if user_signed_in? && c.user == current_user %>
+        <div>
+          <%= link_to "削除", post_comment_path(@post, c), method: :delete,
+                      data: { confirm: "削除しますか？" }, class: "link-danger small" %>
+        </div>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

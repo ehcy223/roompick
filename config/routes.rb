@@ -1,10 +1,22 @@
 Rails.application.routes.draw do
-  #エンドユーザー用（会員）用のログイン機能
+  namespace :admin do
+    get 'categories/index'
+    get 'categories/show'
+  end
+  namespace :admin do
+    get 'users/index'
+    get 'users/show'
+  end
+  #会員用のログイン機能
   devise_for :users,skip: [:passwords], controllers: {
     sessions: 'public/sessions',
     registrations: 'public/registrations',
   }  
-  
+  # 管理者用のログイン機能
+  devise_for :admins, path: 'admin', skip: [:registrations, :passwords] ,controllers:{
+    sessions: 'admin/sessions'
+  }
+
   #エンドユーザーの各ページ
   scope module: :public do
     root to: 'homes#top'
@@ -17,6 +29,7 @@ Rails.application.routes.draw do
         get 'my', action: 'my_posts'  # ログインユーザーの投稿一覧
         get 'tag/:tag_name', action: 'tag_filter', as: 'tag_filter'  # タグ絞り込み
       end
+      resources :comments, only: [:create, :destroy]
     end
   
     resources :categories, only: [] do
@@ -33,11 +46,14 @@ Rails.application.routes.draw do
       patch 'withdraw'  # ステータス更新（退会）
     end
   end
-
-  # 管理者用のログイン機能
-  devise_for :admin,skip: [:registrations, :passwords] ,controllers:{
-    sessions: 'admin/sessions'
-  }
-
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  # 管理者用ページ
+    namespace :admin do
+      root to: "homes#top"  # /admin でトップページ
+      resources :users,      only: [:index, :show]
+      resources :posts,      only: [:index, :show, :destroy]
+      resources :comments,   only: [:index, :show]
+      resources :tags,       only: [:index, :show]
+      resources :categories, only: [:index, :show]
+    end
 end

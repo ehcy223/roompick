@@ -1,0 +1,10 @@
+/* 管理者ヘッダー内 検索フォーム幅調整 */
+.navbar-search {
+  width: 60vw;
+  max-width: 420px; /* ← これで実質 min(420px, 60vw) と同じ挙動 */
+}
+
+/* 画面幅が992px以下（タブレット・スマホ）では全幅に */
+@media (max-width: 992px) {
+  .navbar-search { width: 100%; }
+}

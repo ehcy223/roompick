@@ -1,0 +1,9 @@
+<h1 class="h5 mb-3"><%= @category.name %> の投稿</h1>
+<ul class="list-group">
+  <% @posts.each do |p| %>
+    <li class="list-group-item d-flex justify-content-between">
+      <%= link_to p.title, admin_post_path(p) %>
+      <span class="text-muted small"><%= l(p.created_at, format: :short) rescue p.created_at %></span>
+    </li>
+  <% end %>
+</ul>
