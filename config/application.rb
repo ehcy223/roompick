@@ -9,6 +9,7 @@ Bundler.require(*Rails.groups)
 module Roompick
   class Application < Rails::Application
     config.i18n.default_locale = :ja
+    config.i18n.available_locales = [:ja, :en]
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
 

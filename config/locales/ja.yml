@@ -1,6 +1,75 @@
 ja:
   devise:
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+      already_signed_out: "すでにログアウト済みです。"
+      user:
+        signed_in: "ログインしました。"
+        signed_out: "ログアウトしました。"
+        already_signed_out: "すでにログアウト済みです。"
+
+    registrations:
+      signed_up: "アカウント登録が完了しました。"
+      signed_up_but_inactive: "アカウントは作成されましたが、現在は有効化されていません。"
+      signed_up_but_locked: "アカウントは作成されましたが、ロックされています。"
+      updated: "アカウント情報を更新しました。"
+      update_needs_confirmation: "アカウント情報を更新しました。新しいメールアドレスの確認が必要です。"
+      destroyed: "アカウントを削除しました。"
+      user:
+        signed_up: "アカウント登録が完了しました。"
+        signed_up_but_inactive: "アカウントは作成されましたが、現在は有効化されていません。"
+        signed_up_but_locked: "アカウントは作成されましたが、ロックされています。"
+        updated: "アカウント情報を更新しました。"
+        update_needs_confirmation: "アカウント情報を更新しました。新しいメールアドレスの確認が必要です。"
+        destroyed: "アカウントを削除しました。"
+
+    passwords:
+      no_token: "このページにはパスワード再設定メールのリンクからアクセスしてください。"
+      send_instructions: "パスワード再設定の案内をメールで送信しました。"
+      send_paranoid_instructions: "（該当する場合）登録済みメールアドレス宛に案内を送信しました。"
+      updated: "パスワードを変更しました。"
+      updated_not_active: "パスワードを変更しました。アカウントはまだ有効化されていません。"
+
+    confirmations:
+      send_instructions: "アカウント確認の案内をメールで送信しました。"
+      send_paranoid_instructions: "（該当する場合）確認の案内をメールで送信しました。"
+      confirmed: "アカウントを確認しました。"
+
+    unlocks:
+      send_instructions: "アカウントのロック解除手順をメールで送信しました。"
+      send_paranoid_instructions: "（該当する場合）ロック解除手順をメールで送信しました。"
+      unlocked: "アカウントのロックを解除しました。"
+
+    omniauth_callbacks:
+      success: "%{kind} アカウントで認証しました。"
+      failure: "%{kind} では認証できませんでした。理由: %{reason}"
+
     failure:
+      already_authenticated: "すでにログインしています。"
+      inactive: "アカウントはまだ有効化されていません。"
+      invalid: "無効な認証情報です。"
+      last_attempt: "アカウントがロックされる前の最後の試行です。"
+      locked: "アカウントはロックされています。"
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
+      timeout: "一定時間操作がなかったため、再度ログインしてください。"
+      unauthenticated: "ログインしてください。"
+      unconfirmed: "続行するにはメールアドレスの確認が必要です。"
       user:
         invalid: "メールアドレスまたはパスワードが違います。"
-      invalid: "無効な認証情報です。"
+        not_found_in_database: "メールアドレスまたはパスワードが違います。"
+        unauthenticated: "ログインしてください。"
+        unconfirmed: "続行するにはメールアドレスの確認が必要です。"
+        locked: "アカウントはロックされています。"
+
+    mailer:
+      confirmation_instructions:
+        subject: "アカウント確認のご案内"
+      reset_password_instructions:
+        subject: "パスワード再設定のご案内"
+      unlock_instructions:
+        subject: "アカウントロック解除のご案内"
+      email_changed:
+        subject: "メールアドレス変更のお知らせ"
+      password_change:
+        subject: "パスワード変更のお知らせ"
