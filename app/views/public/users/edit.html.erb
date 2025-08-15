@@ -1,7 +1,7 @@
 <h1>会員情報編集</h1>
 
 <%= form_with model: @user, url: user_path(@user), method: :patch, local: true do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+  <%= render "public/shared/error_messages", resource: @user %>
   <div>
     <%= f.label :name, "名前" %><br>
     <%= f.text_field :name %>
