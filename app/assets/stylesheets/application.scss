@@ -25,3 +25,9 @@
 .post-form .card { border: none; }
 .post-form .card-body { padding: clamp(16px, 3vw, 28px); }
 
+/* 投稿サムネイル（正方形表示） */
+.post-thumb {
+  width: 100%;
+  aspect-ratio: 1 / 1; /* 正方形 */
+  object-fit: cover;   /* 中央をトリミング */
+}
