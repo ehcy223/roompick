@@ -1,5 +1,10 @@
 ja:
   devise:
+    shared:
+      links:
+        sign_in: "ログイン"
+        sign_up: "新規登録"
+
     sessions:
       signed_in: "ログインしました。"
       signed_out: "ログアウトしました。"
@@ -8,8 +13,12 @@ ja:
         signed_in: "ログインしました。"
         signed_out: "ログアウトしました。"
         already_signed_out: "すでにログアウト済みです。"
+      new:
+        sign_in: "ログイン"
 
     registrations:
+      new:
+        sign_up: "新規登録"
       signed_up: "アカウント登録が完了しました。"
       signed_up_but_inactive: "アカウントは作成されましたが、現在は有効化されていません。"
       signed_up_but_locked: "アカウントは作成されましたが、ロックされています。"
