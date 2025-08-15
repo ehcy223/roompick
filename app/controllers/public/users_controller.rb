@@ -1,7 +1,11 @@
 module Public
   class UsersController < ApplicationController
     #ログイン済ユーザーのみアクセス許可
-    before_action :authenticate_user!
+    before_action :authenticate_user!, except: [:index, :show]
+
+    def index
+      @users = User.order(created_at: :desc) # 必要なら .page(params[:page])
+    end
 
     # マイページ表示
     def mypage

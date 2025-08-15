@@ -1,11 +1,20 @@
 module Public
   class PostsController < ApplicationController
     # 編集・更新・削除アクションの前に権限チェック
+    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    before_action :set_post, only: [:show, :edit, :update, :destroy]
     before_action :correct_user, only: [:edit, :update, :destroy]
 
     # 投稿一覧
     def index
       @posts = Post.all.order(created_at: :desc)  # 新しい投稿から表示
+    end
+
+    # ユーザー別投稿一覧 /users/:user_id/posts
+    def user_posts
+      @user  = User.find(params[:user_id])
+      @posts = @user.posts.order(created_at: :desc)
+      render :index   # 一覧ビューを流用（専用ビューを作るなら render :user_posts に）
     end
     
     # 投稿詳細表示アクション

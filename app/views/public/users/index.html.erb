@@ -1,0 +1,30 @@
+<% content_for :title, "ユーザー一覧" %>
+
+<div class="container py-4">
+  <h1 class="h4 mb-3">ユーザー一覧</h1>
+
+  <% if @users.any? %>
+    <div class="row g-3">
+      <% @users.each do |u| %>
+        <div class="col-12 col-md-6">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body d-flex flex-column">
+              <!-- プロフィールへのリンクは削除。名前/メールはテキスト表示のみ -->
+              <h2 class="h6 mb-1"><%= u.name.presence || u.email %></h2>
+              <div class="text-muted small mb-2">
+                登録日: <%= l(u.created_at.to_date) rescue u.created_at.to_date %>
+              </div>
+
+              <div class="mt-auto">
+                <!-- 投稿一覧のみ遷移可能 -->
+                <%= link_to "投稿一覧", user_posts_path(user_id: u.id), class: "btn btn-sm btn-outline-primary" %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted">ユーザーが見つかりませんでした。</p>
+  <% end %>
+</div>
