@@ -1,15 +1,55 @@
-/* ロゴサイズ調整 */
+/* --- トップページだけヘッダー固定 --- */
+body.homes-top .navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* 固定ヘッダー分だけ本文を下げる */
+body.homes-top {
+  padding-top: 80px; /* navbar の高さに合わせて調整 */
+}
+
+/* 全ページで固定しない（Bootstrapの fixed-top を上書き） */
+.navbar {
+  position: static; /* デフォルトは固定しない */
+  height: 80px;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
+/* ロゴサイズ */
 .logo-img {
-  height: 50px; /* PC */
+  height: 25px;
   width: auto;
 }
 
-/* スマホレスポンシブ */
 @media (max-width: 768px) {
   .logo-img {
     height: 35px;
   }
 }
 
-body { padding-top: 0 !important; }
+/* 検索ボタン */
+.search-button {
+  background-color: #007940;
+  color: #fff;
+  border: none;
+  border-radius: 9999px;
+  padding: 6px 14px;
+  margin-left: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color .2s ease-in-out;
+}
 
+.search-button:hover {
+  background-color: #006633;
+}
+
+/* 非表示ユーティリティ */
+.is-hidden {
+  display: none !important;
+}

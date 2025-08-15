@@ -16,13 +16,8 @@
     <div class="collapse navbar-collapse" id="navbarNav">
 
       <!-- 中央：検索フォーム（横幅はCSSで調整） -->
-      <div class="navbar-search mx-lg-auto my-2 my-lg-0">
-        <%= form_with url: search_posts_path, method: :get, local: true, class: "d-flex" do |f| %>
-          <%= f.text_field :q, value: params[:q] || params[:keyword],
-                class: "form-control form-control-sm me-2",
-                placeholder: "キーワード検索" %>
-          <%= f.submit "検索", class: "btn btn-outline-success btn-sm" %>
-        <% end %>
+      <div class="mx-lg-auto my-2 my-lg-0">
+        <%= render 'shared/search_form' %>
       </div>
 
       <!-- 右：メニュー -->

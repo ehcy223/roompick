@@ -18,6 +18,8 @@ import 'bootstrap'
 // 自作のスタイルを読み込み
 import "../stylesheets/application.scss"
 
+import "./search_toggle";
+
 
 Rails.start()
 Turbolinks.start()

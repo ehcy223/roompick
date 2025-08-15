@@ -1,5 +1,6 @@
 @import "header";
 @import "admin/admin";
+@import "search";
 
 /* Sprockets の require系は併用しない方が安全（重複取り込み防止）
  * = require_self
@@ -24,7 +25,10 @@
 /* 新規投稿 */
 .post-form .form-label { font-weight: 600; }
 .post-form .card { border: none; }
-.post-form .card-body { padding: clamp(16px, 3vw, 28px); }
+.post-form .card-body { padding: 16px; }              /* 基本 */
+@media (min-width: 768px)  { .post-form .card-body { padding: 20px; } }
+@media (min-width: 992px)  { .post-form .card-body { padding: 24px; } }
+@media (min-width: 1200px) { .post-form .card-body { padding: 28px; } }  /* 上限 */
 
 /* 投稿サムネイル（正方形表示） */
 .post-thumb {
