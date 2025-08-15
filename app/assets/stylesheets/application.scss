@@ -19,3 +19,9 @@
   object-fit: cover;          /* コンテナに合わせて拡大・トリミング */
   object-position: center 99%; /* ← ここを調整して上余白を削る */
 }
+
+/* 新規投稿 */
+.post-form .form-label { font-weight: 600; }
+.post-form .card { border: none; }
+.post-form .card-body { padding: clamp(16px, 3vw, 28px); }
+
