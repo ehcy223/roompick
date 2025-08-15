@@ -1,25 +1,25 @@
 module Public
   class PostsController < ApplicationController
-    # 編集・更新・削除アクションの前に権限チェック
-    before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+    # 権限チェック
+    before_action :authenticate_user!, except: [:index, :show]
     before_action :set_post, only: [:show, :edit, :update, :destroy]
     before_action :correct_user, only: [:edit, :update, :destroy]
 
     # 投稿一覧
     def index
-      @posts = Post.all.order(created_at: :desc)  # 新しい投稿から表示
+      @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
     end
 
     # ユーザー別投稿一覧 /users/:user_id/posts
     def user_posts
       @user  = User.find(params[:user_id])
-      @posts = @user.posts.order(created_at: :desc)
+      @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(12)
       render :index   # 一覧ビューを流用（専用ビューを作るなら render :user_posts に）
     end
     
     # 投稿詳細表示アクション
     def show
-      @post = Post.find(params[:id])  # params[:id]はURLの/posts/123 の「123」部分
+      # @post は set_post で取得済み
     end
     
     # 新規投稿フォーム表示
@@ -44,7 +44,7 @@ module Public
 
     # 投稿編集フォーム表示
     def edit
-      @post = Post.find(params[:id])
+      # @post は set_post 済み（correct_user も通過済み）
     end
 
     # 投稿更新処理
@@ -75,10 +75,13 @@ module Public
     end
     
     private
+    def set_post
+      @post = Post.find(params[:id])
+    end
 
     # 現在のユーザーが投稿の所有者かを確認し、違えば投稿一覧へリダイレクトする
     def correct_user
-      @post = Post.find(params[:id])
+      # set_post 済み
       redirect_to posts_path, alert: "権限がありません" unless @post.user == current_user
     end
 
