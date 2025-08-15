@@ -22,10 +22,6 @@
 
       <div class="d-flex flex-wrap gap-2">
         <%= link_to "レビューを探す", posts_path, class: "btn btn-primary btn-lg" %>
-        <%# ログイン前の導線（必要なら表示） %>
-        <% unless user_signed_in? %>
-          <%= link_to "無料登録して投稿する", new_user_registration_path, class: "btn btn-outline-primary btn-lg" %>
-        <% end %>
       </div>
     </div>
   </div>
