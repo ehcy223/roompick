@@ -5,7 +5,7 @@ ruby '3.1.2'
 
 gem 'rails', '~> 6.1.7', '>= 6.1.7.10'
 gem 'sqlite3', '~> 1.4'
-gem 'puma', '~> 5.0'
+gem 'puma', '~> 3.11'
 gem 'webpacker', '~> 5.0'
 gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
@@ -52,3 +52,12 @@ group :test do
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
+gem "net-smtp"
+gem "net-pop"
+gem "net-imap"
