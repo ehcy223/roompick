@@ -4,7 +4,6 @@ class User < ApplicationRecord
   # :timeoutable（一定時間でセッション切れ）, :trackable（ログイン履歴）,
   # :omniauthable（SNSログイン）
   validates :name, presence: true
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
 
   # ユーザーが削除されると関連投稿も削除
   has_many :posts, dependent: :destroy

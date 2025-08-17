@@ -82,3 +82,17 @@ ja:
         subject: "メールアドレス変更のお知らせ"
       password_change:
         subject: "パスワード変更のお知らせ"
+    
+  activerecord:
+    models:
+      user: ユーザー
+    attributes:
+      user:
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+  
+  errors:
+    messages:
+      not_saved: "%{resource}の保存に失敗しました（%{count}件のエラー）"

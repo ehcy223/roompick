@@ -1,12 +1,11 @@
 # app/controllers/public/users_controller.rb
 module Public
   class UsersController < ApplicationController
-    # 未ログインでも index/show は見られる
+    # index/show は誰でもOK、それ以外はログイン必須
     before_action :authenticate_user!, except: [:index, :show]
-    # /users/:id のユーザーを事前取得
-    before_action :set_user,           only: [:show, :edit, :update]
-    # 本人以外は編集・更新不可
-    before_action :ensure_owner!,      only: [:edit, :update]
+    before_action :set_user,      only: [:show, :edit, :update]
+    # 本人のみ編集可：他人が来たらマイページへ
+    before_action :ensure_owner!, only: [:edit, :update]
 
     def index
       @users = User.order(created_at: :desc)
@@ -53,7 +52,7 @@ module Public
     end
 
     def ensure_owner!
-      redirect_to posts_path, alert: "権限がありません" unless @user == current_user
+      redirect_to mypage_path, alert: "権限がありません" unless @user == current_user
     end
 
     def user_params

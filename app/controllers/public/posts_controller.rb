@@ -1,11 +1,12 @@
 module Public
   class PostsController < ApplicationController
-    # 権限チェック
-    before_action :authenticate_user!, except: [:index, :show]
-    before_action :set_post, only: [:show, :edit, :update, :destroy]
-    before_action :correct_user, only: [:edit, :update, :destroy]
+    # 要件：未ログインは詳細も見せない
+    before_action :authenticate_user!, only: [:show, :new, :create, :edit, :update, :destroy]
+    before_action :set_post,          only:  [:show, :edit, :update, :destroy]
+    # 本人のみ編集可：他人が来たら一覧へ
+    before_action :ensure_owner!,     only:  [:edit, :update, :destroy]
 
-    # 投稿一覧
+    # 投稿一覧（ここは誰でも閲覧可）
     def index
       @posts = Post.order(created_at: :desc).page(params[:page]).per(12)
     end
@@ -14,42 +15,36 @@ module Public
     def user_posts
       @user  = User.find(params[:user_id])
       @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(12)
-      render :index   # 一覧ビューを流用（専用ビューを作るなら render :user_posts に）
+      render :index
     end
-    
-    # 投稿詳細表示アクション
+
+    # 詳細
     def show
-      # @post は set_post で取得済み
+      # @post は set_post 済み
     end
-    
-    # 新規投稿フォーム表示
+
+    # 新規
     def new
       @post = Post.new
     end
-    
-    # 投稿作成処理
+
+    # 作成
     def create
-      # current_userに紐づく新規投稿を受け取ったパラメータで初期化
       @post = current_user.posts.new(post_params)
-    
-      # 投稿保存成功時の処理
       if @post.save
-        # 投稿詳細ページへリダイレクトし、成功メッセージを表示
         redirect_to @post, notice: '投稿が作成されました'
       else
-        # バリデーションエラーなどで保存失敗したら、再度新規投稿フォームを表示
         render :new
       end
     end
 
-    # 投稿編集フォーム表示
+    # 編集
     def edit
-      # @post は set_post 済み（correct_user も通過済み）
+      # @post は set_post 済み / ensure_owner! 済み
     end
 
-    # 投稿更新処理
+    # 更新
     def update
-      @post = Post.find(params[:id])
       if @post.update(post_params)
         redirect_to @post, notice: '投稿が更新されました'
       else
@@ -57,38 +52,36 @@ module Public
       end
     end
 
+    # 削除（削除後はマイページへ）
     def destroy
-      @post = Post.find(params[:id])
       @post.destroy
-      redirect_to posts_path, notice: '投稿が削除されました'
+      redirect_to mypage_path, notice: '投稿が削除されました'
     end
-    
-    #投稿検索
+
+    # 検索
     def search
       keyword = params[:keyword]
       @posts = if keyword.present?
                  Post.where("title LIKE ?", "%#{keyword}%").order(created_at: :desc)
                else
-                 Post.all.order(created_at: :desc)
+                 Post.order(created_at: :desc)
                end
       render :index
     end
-    
+
     private
+
     def set_post
       @post = Post.find(params[:id])
     end
 
-    # 現在のユーザーが投稿の所有者かを確認し、違えば投稿一覧へリダイレクトする
-    def correct_user
-      # set_post 済み
+    # 本人以外は一覧へ
+    def ensure_owner!
       redirect_to posts_path, alert: "権限がありません" unless @post.user == current_user
     end
 
-    # ストロングパラメータ：投稿で受け取る安全なパラメータを限定
     def post_params
       params.require(:post).permit(:title, :body, :category_id, :rating, :image)
     end
   end
 end
-  
