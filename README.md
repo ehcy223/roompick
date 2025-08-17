@@ -20,7 +20,10 @@
 - 他のユーザーのレビューやおすすめ情報を知りたいとき
 ​
 ## 設計書
-後ほど作成予定
+- [アプリケーション詳細設計書](https://docs.google.com/spreadsheets/d/1yVuceAsMlgIStjW3l_SKcCzIcwybatuivZJhlBIn3Fw/edit?gid=549108681#gid=549108681)
+- [ER図](https://app.diagrams.net/?splash=0#G1CnJgHeseJAJo8rJN8UPCA_E575DJApHh#%7B%22pageId%22%3A%22LkA-50vI9zVlM_wPANrl%22%7D)
+- [テーブル定義書](https://docs.google.com/spreadsheets/d/1N48Vqv2UUnGD8BPsXSJVFi5cnZm1VGiq5rkA3FxmapM/edit?gid=462447506#gid=462447506)
+- [UIフロー図](https://app.diagrams.net/#G1nrQ30h-KleoOeR-D4UMi-yqd04H7xPFx#%7B%22pageId%22%3A%22abxl-s3Z8dxzaB_hMYrt%22%7D)
 ​
 ## 開発環境
 - OS：Linux(CentOS)
