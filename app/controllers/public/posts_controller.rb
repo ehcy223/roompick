@@ -77,7 +77,8 @@ module Public
 
     # 本人以外は一覧へ
     def ensure_owner!
-      redirect_to posts_path, alert: "権限がありません" unless @post.user == current_user
+      return if @post.user_id == current_user&.id
+      redirect_to posts_path, alert: "権限がありません" and return
     end
 
     def post_params
